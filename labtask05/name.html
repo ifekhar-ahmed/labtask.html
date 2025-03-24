@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Name Page</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .container {
+            width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 2px solid black;
+            border-radius: 5px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        .error { color: red; }
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+       // button {
+            padding: 10px 20px;
+//background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+           // background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Name</h2>
+        <input type="text" id="name" placeholder="Full Name">
+        <p class="error" id="nameError"></p>
+        <button onclick="validateName()">Submit</button>
+    </div>
+    
+    <script>
+        function validateName() {
+            let name = document.getElementById("name").value.trim();
+            let regex = /^[A-Za-z][A-Za-z .-]* [A-Za-z .-]+$/;
+            if (name === "") {
+                document.getElementById("nameError").innerText = "Name cannot be empty.";
+            } else if (name.split(" ").length < 2) {
+                document.getElementById("nameError").innerText = "Name must contain at least two words.";
+            } else if (!regex.test(name)) {
+                document.getElementById("nameError").innerText = "Invalid name format. Must start with a letter and can include letters, dots, or dashes.";
+            } else {
+                document.getElementById("nameError").innerText = "";
+                alert("Name submitted successfully!");
+            }
+        }
+    </script>
+</body>
+</html>
